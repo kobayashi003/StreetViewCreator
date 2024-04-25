@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  server:
+    build: server-docker
+    
+    command: "bash -c '${PIP_COMMAND} &&  flask run --host=0.0.0.0 --port=5000 && ${SERVER_COMMAND}'"
+    env_file:
+      - ./.env
+    volumes:
+      - "./${APP_NAME}/server:/backend"
+    environment:
+      - FLASK_ENV=development
+      - FLASK_APP=server.py
+    ports:
+      - "5000:5000"
+
+  client:
+      # 起動イメージ
+      build: ./client-docker
+      # 環境変数
+      environment:
+          - PORT=8000
+      tty: true
+      # ホスト側のポート：コンテナのポート
+      ports:
+          - '8000:8000'
+      # ホスト側のsrcをコンテナのappにマウント
+      volumes:
+          - "./${APP_NAME}/client:/frontend"
+      # 起動時のカレントフォルダ
+      working_dir: /frontend
+      # 起動後に実行するコマンド
+      command: sh -c '${CLIENT_COMMAND}' && '${NPM_COMMAND}'
+      # command: sh
