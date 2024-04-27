@@ -1,0 +1,173 @@
+.imageContainer {
+  position: relative;
+}
+.mainImage {
+  /* max-width: 30%;
+  height: 40%; */
+  /* width: 3024px;
+  height: 4032px; */
+  margin-top: 0px;
+}
+
+.mainImage:hover{
+  cursor: pointer;
+}
+
+.coordinateText {
+  position: absolute;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: blue;
+}
+
+.marker {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: red;
+  transition: transform 0.2s ease;
+}
+
+.marker:hover{
+  transform: scale(3.0);
+  cursor:pointer;
+}
+
+.close-button {
+  position: absolute;
+  top: 20px;
+  right: 0px;
+  font-size: 16px; /* 適切なサイズに調整 */
+  padding: 5px 10px; /* テキストとボタンの周囲の余白を調整 */
+  background: none;
+  background-color: #fff8d8;
+  cursor: pointer;
+  z-index: 9999;
+  transition: transform 0.2s ease;
+}
+
+.close-button:hover{
+  transform: scale(1.2);
+  cursor:pointer;
+}
+
+.connect-button {
+  border: none;
+  background: none;
+  background-color: #abced8;
+  position: fixed;
+  top: 68px;
+  left: 510px;
+  font-size: 20px; /* 適切なサイズに調整 */
+  padding: 5px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  margin-right: 10px; /* 画像の右側に隙間を作成 */
+}
+
+.connect-button:hover {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.edit-button {
+  border: none;
+  background-color: #abced8;
+  position: fixed;
+  top: 108px;
+  left: 510px;
+  right: -150px;
+  font-size: 20px; /* 適切なサイズに調整 */
+  padding: 5px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.edit-button:hover{
+  transform: scale(1.2);
+  cursor:pointer;
+}
+
+.delete-button{
+  border: none;
+  background-color: #abced8;
+  position: fixed;
+  top: 148px;
+  left: 510px;
+  right: -150px;
+  font-size: 20px; /* 適切なサイズに調整 */
+  padding: 5px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.delete-button:hover{
+  transform: scale(1.2);
+  cursor:pointer;
+}
+
+.right-button{
+  border: none;
+  background-color: #ffffff;
+  position: fixed;
+  top: 400px;
+  left: 510px;
+  right: -40px;
+  font-size: 25px; /* 適切なサイズに調整 */
+  /* color:#ffebc8; */
+  padding: 5px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.right-button:hover{
+  transform: scale(1.5);
+  cursor:pointer;
+}
+
+.left-button{
+  border: none;
+  background-color: #ffffff;
+  position: fixed;
+  top: 400px;
+  left: -40px;
+  right: 510px;
+  font-size: 25px; /* 適切なサイズに調整 */
+  /* color:#ffebc8; */
+  padding: 5px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.left-button:hover{
+  transform: scale(1.5);
+  cursor:pointer;
+}
+
+.popupImageContainer {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex; /* flexbox を使用 */
+  align-items: center; /* 要素を中央揃えに配置 */
+  justify-content: flex-end; /* 要素を右端に配置 */
+}
+
+.connect-button {
+  border: none;
+  background: none;
+  background-color: #abced8;
+  font-size: 20px; /* 適切なサイズに調整 */
+  padding: 5px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  margin-right: 10px; /* 画像の右側に隙間を作成 */
+}
+
+.connect-button:hover {
+  transform: scale(1.2);
+  cursor: pointer;
+}
