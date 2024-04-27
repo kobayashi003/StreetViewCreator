@@ -14,6 +14,7 @@ interface Coordinates {
 
 const App: React.FC = () => {
   const [imageData, setImageData] = useState<ImageData | null>(null);
+  const [data,setdata]=useState<data | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [selectedCoordinates, setSelectedCoordinates] = useState<{ x: number; y: number; floor: number }[]>([]);
   const [selectedFloor, setSelectedFloor] = useState<number>(0);
@@ -30,26 +31,19 @@ const App: React.FC = () => {
         return response.json();
       })
       .then(data => {
-        const coordinates: Coordinates[][] = [
-          [
-            { x: data[0][0]["photo_location"][0], y: data[0][0]["photo_location"][1], floor: 0 },
-            { x: data[0][1]["photo_location"][0], y: data[0][1]["photo_location"][1], floor: 0 },
-            { x: data[0][2]["photo_location"][0], y: data[0][2]["photo_location"][1], floor: 0 },
-            { x: data[0][3]["photo_location"][0], y: data[0][3]["photo_location"][1], floor: 0 }
-          ],
-          [
-            { x: data[1][0]["photo_location"][0], y: data[1][0]["photo_location"][1], floor: 1 },
-            { x: data[1][1]["photo_location"][0], y: data[1][1]["photo_location"][1], floor: 1 },
-            { x: data[1][2]["photo_location"][0], y: data[1][2]["photo_location"][1], floor: 1 }
-          ]
-        ];
-
-        const imageDataObj: ImageData = {
+ 
+        const imageDataObj: ImageData = {          
           data: data.encoded_sketch_images,
-          coordinates: coordinates,
+          // coordinates: data,
+          
         };
+        console.log(`data確認あああ${data["0"]["0"]["photo_direction"]["0"]}`)
+        ImageData.date
+
+
 
         setImageData(imageDataObj);
+        setdate(dataObj);
         setLoading(false);
       })
       .catch(error => {
@@ -57,6 +51,8 @@ const App: React.FC = () => {
         setLoading(false);
       });
   }, []);
+
+  
 
   useEffect(() => {
     if (!loading && imageData) {
@@ -94,7 +90,7 @@ const App: React.FC = () => {
           context.stroke();
         }
       };
-      image.src = `data:image/jpeg;base64,${imageData.data[selectedFloor]}`;
+      image.src = `data:image/jpeg;base64,${imageData.data[0]}`;
     }
   }, [loading, imageData, selectedFloor, selectedCoordinates, connectClicked]);
 
@@ -123,16 +119,12 @@ const App: React.FC = () => {
     setConnectClicked(true);
   };
 
-  const handleDisconnectClick = () => {
-    setSelectedCoordinates([]);
-    setConnectClicked(false);
-  };
-
   return (
     <div className="App">
       <div className="floor-buttons">
         <button onClick={() => handleFloorChange(0)}>1F</button>
         <button onClick={() => handleFloorChange(1)}>2F</button>
+        <button onClick={() => handleFloorChange(2)}>3F</button>
       </div>
 
       <div className="imageContainer">
@@ -155,13 +147,12 @@ const App: React.FC = () => {
       {connectClicked && (
         <div className="selected-coordinates">
           {selectedCoordinates.map((coordinate, index) => (
-            <p key={index}>Selected Coordinate {index + 1} (Floor {coordinate.floor}): ({coordinate.x}, {coordinate.y})</p>
+            <p key={index}>Selected Coordinate {index + 1}: ({coordinate.x}, {coordinate.y})</p>
           ))}
         </div>
       )}
 
       <button className="connect-button" onClick={handleConnectClick}>Connect</button>
-      <button className="disconnect-button" onClick={handleDisconnectClick}>Disconnect</button>
     </div>
   );
 }
